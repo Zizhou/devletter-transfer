@@ -1,6 +1,6 @@
 settings = {
-'username' : 'iggdevletterbot@gmail.com',
-'password' : 'iamrobot',
-'doc' : '2014 Test',
+'username' : 'example@gmail.com',
+'password' : 'hunter2',
+'doc' : 'TEST',
 'worksheet' : 1,
 }
