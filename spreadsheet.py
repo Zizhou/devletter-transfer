@@ -45,8 +45,8 @@ class Spreadsheet(object):
                         row.custom[i] = ''
                     else:
                         row.custom[i] = str(row.custom.get(i).text.encode('utf-8'))
-                #row.custom[ROBOCOLUMN] = 'beep!'
-                row.custom[ROBOCOLUMN] = ''
+                row.custom[ROBOCOLUMN] = 'beep!'
+                #row.custom[ROBOCOLUMN] = ''
                 self.client.UpdateRow(row, row.custom)
                 print 'updated row'
                 return row

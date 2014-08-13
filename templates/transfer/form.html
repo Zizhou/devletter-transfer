@@ -3,7 +3,7 @@
 <script>
 //search for duplicate game when input loses focus 
 $(document).ready(function(){
-    $( "#id_game-name" ).blur(function(){
+    $( "#id_game-name" ).focus(function(){
         $.get( '/submit/name_lookup/' + this.value, function(data){
             if(data == 'True') {
                 $( '#galert' ).html('Warning! This game already exists in the database');
@@ -17,7 +17,7 @@ $(document).ready(function(){
 });
 //search for duplicate dev when input loses focus 
 $(document).ready(function(){
-    $( "#id_dev-name" ).blur(function(){
+    $( "#id_dev-name" ).focus(function(){
         $.get( '/submit/dev_lookup/' + this.value, function(data){
             if(data == 'True'){
                 $( '#dalert' ).html('Warning! This dev already exists in the database');
