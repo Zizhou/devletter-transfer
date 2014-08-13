@@ -1,0 +1,65 @@
+{% extends 'mybase.html' %}
+{% block head %}
+<script>
+//search for duplicate game when input loses focus 
+$(document).ready(function(){
+    $( "#id_game-name" ).blur(function(){
+        $.get( '/submit/name_lookup/' + this.value, function(data){
+            if(data == 'True') {
+                $( '#galert' ).html('Warning! This game already exists in the database');
+            }
+            else{
+                $( '#galert' ).html('');
+ 
+            };
+        });
+    });
+});
+//search for duplicate dev when input loses focus 
+$(document).ready(function(){
+    $( "#id_dev-name" ).blur(function(){
+        $.get( '/submit/dev_lookup/' + this.value, function(data){
+            if(data == 'True'){
+                $( '#dalert' ).html('Warning! This dev already exists in the database');
+            }
+            else{
+                $( '#dalert' ).html('');
+ 
+            };
+        });
+    });
+});
+
+//enable/disable developer fields
+$(document).ready(function(){
+    $( "#id_game-developer" ).change(function(){
+        if(this.value == ''){
+            $( ".dev" ).removeAttr("disabled");
+        }
+        else {
+            $( ".dev" ).attr("disabled", "disabled");
+        };
+    });
+});
+</script>
+{% endblock %}
+{% block pagetitle %}
+
+{% endblock %}
+
+
+{% block body %}
+<div id = 'galert'></div>
+<div id = 'dalert'></div>
+
+<form action = '{% url 'transfer:main' %}' method = 'POST' name = 'transferform'>
+    {% csrf_token %}
+
+    <div style = 'float:left;margin:5px;'>{{gform.as_p}}</div>
+    <div style = 'float:left;margin:5px;'>{{dform.as_p}}</div><div style = 'clear:both'></div>
+    <input type = 'submit' value = 'Approve'>
+</form>
+<form action = '{% url 'transfer:main' %}' method = 'GET'>
+    <input type = 'submit' value = 'Reject'>
+</form>
+{% endblock %}
